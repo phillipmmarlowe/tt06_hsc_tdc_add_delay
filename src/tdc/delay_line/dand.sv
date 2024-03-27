@@ -31,7 +31,7 @@ module dand #(parameter WIDTH=32) (
 	generate 
 		genvar i;
 		for(i=0; i<WIDTH; i=i+1) begin : dand_genblk
-            (* keep *)
+            	(* keep *)
 			`AND_CELL DA ( 
                 .X(ffout_w[i]), 
                 .A(1'b1), 
@@ -43,7 +43,7 @@ module dand #(parameter WIDTH=32) (
                     , .VNB(VNB)
                 `endif  // USE_POWER_PINS
             );
-        end
+        	end
    	endgenerate
 
 endmodule

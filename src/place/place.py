@@ -29,7 +29,7 @@ if __name__ == '__main__':
     max_y=97.92
 
     # Width of cells in delay line
-    cell_width_grid_dle=16            # Currently using sky130_fd_sc_hd__fa_1
+    cell_width_grid_dle=5            # Currently using and2_1 , Not Currently using sky130_fd_sc_hd__fa_1 = 16
     cell_width_grid_capt_reg=24       # Currently using sky130_fd_sc_hd__edfxtp_1
     cell_width_um_dle=grid_space_x*cell_width_grid_dle
     cell_width_um_capt_reg=grid_space_x*cell_width_grid_capt_reg
@@ -42,7 +42,8 @@ if __name__ == '__main__':
     # DL zig-zags vertically if space is insufficicent
     for i in range(tdc_len):
         # Delay line element  
-        insts.append(StdCellInstance(f"tdc_inst.dl_inst.dl_genblk.dl.rca_genblk\\[{i}\\].FA", (dl_loc[0], dl_loc[1]), cell_orient))
+	# What about the very first DA instance that I have in my dand module? guess I do the same as below but just dl2.DA? add to the list of qs for Tyler/Dustin
+        insts.append(StdCellInstance(f"tdc_inst.dl_inst.dland_genblk.dl2.dand_genblk\\[{i}\\].DA", (dl_loc[0], dl_loc[1]), cell_orient)) #changed from dl_genblk.dl.rca_genblk\\[{i}\\].FA
         # Register
         insts.append(StdCellInstance(f"tdc_inst.dl_capt.capt_genblk\\[{i}\\].DFE", (round(dl_loc[0]+cell_width_um_dle+2*grid_space_x, 5), dl_loc[1]), cell_orient))
         # Calculate next macro Y location

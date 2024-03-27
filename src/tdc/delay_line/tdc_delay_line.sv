@@ -28,7 +28,16 @@ module delay_line #(
 				    .s(dl_out),
 				    .co(keep_co)
 			    );
-            end
+            	end
+	    case(DL_TYPE)
+		   "DAND": begin dland_genblk
+		(* keep *) logic
+                    keep_co2;
+                             dand #(.WIDTH(N)) dl2 (
+			               .in_i(in),
+                                       .ffout_o(dl_out)
+			    );
+                end
 	    endcase
     endgenerate
 
